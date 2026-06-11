@@ -1,3 +1,5 @@
 mcp[cli]
 fastmcp
-@modelcontextprotocol/inspector@0.22.0
+httpx
+ollama
+python-dotenv

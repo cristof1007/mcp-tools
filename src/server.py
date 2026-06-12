@@ -18,8 +18,15 @@ from .utils.config import Config
 from .utils.ollama_backend import OllamaBackend
 from .tools.traslation_service import TranslationService
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+# Configure logging to file (stdout is reserved for MCP stdio protocol)
+_log_file = __import__('pathlib').Path(__file__).parent.parent / "mcp-debug.log"
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s [%(levelname)s] %(name)s - %(message)s",
+    handlers=[
+        logging.FileHandler(_log_file, encoding="utf-8"),
+    ],
+)
 logger = logging.getLogger(__name__)
 
 # Load configuration once at module level
